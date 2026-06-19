@@ -1,0 +1,231 @@
+.admin-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Topbar matching screenshot */
+.admin-topbar {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.filter-group {
+  flex: 1;
+  max-width: 240px;
+}
+
+.admin-select, .admin-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border-medium);
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  outline: none;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.admin-select:focus, .admin-input:focus {
+  border-color: #E53935;
+  box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.1);
+}
+
+.search-group {
+  position: relative;
+  max-width: 320px;
+}
+
+.search-group svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-tertiary);
+}
+
+.search-group input {
+  padding-left: 36px;
+}
+
+/* Headers */
+.admin-content-header {
+  margin-bottom: 24px;
+}
+
+.admin-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.admin-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* Stats */
+.admin-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.stat-val {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Cards & Tables */
+.admin-card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+.admin-card-header {
+  padding: 0 20px;
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-secondary);
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 24px;
+}
+
+.admin-tab {
+  background: none;
+  border: none;
+  padding: 16px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  position: relative;
+  font-family: inherit;
+}
+
+.admin-tab:hover {
+  color: var(--text-primary);
+}
+
+.admin-tab.active {
+  color: #E53935;
+}
+
+.admin-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #E53935;
+}
+
+/* Table */
+.query-table-container {
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.admin-table th {
+  padding: 16px 20px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.admin-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: middle;
+}
+
+.clickable-row {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.clickable-row:hover {
+  background: #fef2f2;
+}
+
+.empty-table {
+  text-align: center;
+  padding: 40px !important;
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
+
+/* Status Pills */
+.status-pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-pill.open {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.status-pill.in-progress {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.status-pill.resolved {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+/* Utils */
+.font-mono { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 13px; }
+.text-sm { font-size: 12px; margin-top: 2px; }
+.text-primary { color: var(--text-primary); }
+.text-danger { color: #E53935; }
+.btn-icon {
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 4px;
+}
+.clickable-row:hover .btn-icon {
+  color: #E53935;
+}
