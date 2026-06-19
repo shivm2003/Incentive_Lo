@@ -1,0 +1,39 @@
+.month-filter {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.month-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--bg-info);
+  color: var(--accent);
+  border: none;
+  border-radius: 8px;
+  padding: 4px 22px 4px 26px;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+  transition: opacity 0.15s;
+}
+
+.month-select:hover {
+  opacity: 0.85;
+}
+
+.month-icon {
+  position: absolute;
+  left: 7px;
+  color: var(--accent);
+  pointer-events: none;
+}
+
+.month-chevron {
+  position: absolute;
+  right: 6px;
+  color: var(--accent);
+  pointer-events: none;
+}

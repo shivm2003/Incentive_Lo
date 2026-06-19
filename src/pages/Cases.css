@@ -1,0 +1,179 @@
+/* === Cases Page === */
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 4px 12px;
+}
+
+.page-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.page-subtitle {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-top: 2px;
+}
+
+/* Filter Chips */
+.filter-chips {
+  display: flex;
+  gap: 6px;
+  padding: 0 4px 10px;
+  overflow-x: auto;
+}
+
+.chip {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  border: 1px solid var(--border-light);
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.chip:hover {
+  border-color: var(--accent);
+}
+
+.chip.chip-active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.chip-earned.chip-active {
+  background: #34A853;
+  border-color: #34A853;
+}
+
+.chip-pending.chip-active {
+  background: #F5A623;
+  border-color: #F5A623;
+}
+
+/* Case List */
+.case-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.case-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px;
+  background: var(--bg-primary);
+  border: 0.5px solid var(--border-light);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.case-row:hover {
+  background: var(--bg-info);
+  border-color: var(--accent-light);
+  transform: translateX(2px);
+}
+
+.case-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.case-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot-success {
+  background: #34A853;
+}
+
+.dot-warning {
+  background: #F5A623;
+}
+
+.case-id {
+  font-size: 10px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  color: var(--text-tertiary);
+  letter-spacing: 0.3px;
+}
+
+.case-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.case-loan-amt {
+  font-size: 10px;
+  color: var(--text-tertiary);
+  margin-top: 1px;
+}
+
+.case-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-align: right;
+}
+
+.case-amt {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.case-chevron {
+  color: var(--text-tertiary);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.case-row:hover .case-chevron {
+  transform: translateX(3px);
+  color: var(--accent);
+}
+
+/* Badge */
+.badge {
+  font-size: 9px;
+  padding: 2px 7px;
+  border-radius: 6px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.badge-success {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.badge-warning {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.badge-info {
+  background: var(--bg-info);
+  color: var(--accent);
+}
+
+.badge-danger {
+  background: #fce4ec;
+  color: #c62828;
+}

@@ -1,0 +1,40 @@
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 6px 0 10px;
+  background: var(--bg-primary);
+  border-top: 0.5px solid var(--border-light);
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 10px;
+  color: var(--text-tertiary);
+  text-decoration: none;
+  padding: 4px 12px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.nav-item svg {
+  transition: transform 0.2s;
+}
+
+.nav-item.active {
+  color: var(--accent);
+}
+
+.nav-item.active svg {
+  transform: scale(1.1);
+}
+
+.nav-item span {
+  font-weight: 500;
+}
