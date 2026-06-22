@@ -1,4 +1,5 @@
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { monthlyData, fmt } from '../data/monthlyData';
 import MonthFilter from '../components/MonthFilter';
@@ -7,11 +8,15 @@ import './Cases.css';
 export default function Cases() {
   const { currentMonth } = useApp();
   const navigate = useNavigate();
+  const location = useLocation();
   const data = monthlyData[currentMonth];
   const cases = data.cases;
 
   const earned = cases.filter(c => c.status === 'Earned').length;
   const pending = cases.filter(c => c.status === 'Pending').length;
+
+  const [filter, setFilter] = useState(location.state?.filter || 'all');
+  const filteredCases = cases.filter(c => filter === 'all' || c.status === filter);
 
   return (
     <div className="page page-fade-in">
@@ -26,19 +31,21 @@ export default function Cases() {
 
       {/* Filter Chips */}
       <div className="filter-chips">
-        <button className="chip chip-active" onClick={(e) => filterCases(e, 'all')}>All ({cases.length})</button>
-        <button className="chip chip-earned" onClick={(e) => filterCases(e, 'Earned')}>Earned ({earned})</button>
-        <button className="chip chip-pending" onClick={(e) => filterCases(e, 'Pending')}>Pending ({pending})</button>
+        <button className={`chip ${filter === 'all' ? 'chip-active' : ''}`} onClick={() => setFilter('all')}>All ({cases.length})</button>
+        <button className={`chip ${filter === 'Earned' ? 'chip-active chip-earned' : 'chip-earned'}`} onClick={() => setFilter('Earned')}>Earned ({earned})</button>
+        <button className={`chip ${filter === 'Pending' ? 'chip-active chip-pending' : 'chip-pending'}`} onClick={() => setFilter('Pending')}>Pending ({pending})</button>
       </div>
 
       {/* Case List */}
       <div className="case-list" id="caseList">
-        {cases.map((c, idx) => (
+        {filteredCases.map((c) => {
+          const originalIdx = cases.indexOf(c);
+          return (
           <div
             key={c.id}
             className="case-row"
             data-status={c.status}
-            onClick={() => navigate(`/case/${currentMonth}/${idx}`)}
+            onClick={() => navigate(`/case/${currentMonth}/${originalIdx}`)}
           >
             <div className="case-left">
               <div className={`case-status-dot ${c.status === 'Earned' ? 'dot-success' : 'dot-warning'}`}></div>
@@ -60,23 +67,8 @@ export default function Cases() {
               </svg>
             </div>
           </div>
-        ))}
+        })}
       </div>
     </div>
   );
-}
-
-function filterCases(e, status) {
-  // Update active chip
-  document.querySelectorAll('.chip').forEach(c => c.classList.remove('chip-active'));
-  e.target.classList.add('chip-active');
-
-  // Filter rows
-  document.querySelectorAll('.case-row').forEach(row => {
-    if (status === 'all' || row.dataset.status === status) {
-      row.style.display = '';
-    } else {
-      row.style.display = 'none';
-    }
-  });
 }

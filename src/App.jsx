@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard';
 import Cases from './pages/Cases';
 import CaseDetail from './pages/CaseDetail';
 import Pending from './pages/Pending';
+import SlabConditions from './pages/SlabConditions';
 import './App.css';
 
 // Admin App
@@ -36,6 +37,7 @@ function MobileApp() {
             <Route path="/cases" element={<Cases />} />
             <Route path="/case/:month/:caseIdx" element={<CaseDetail />} />
             <Route path="/pending" element={<Pending />} />
+            <Route path="/slab-conditions" element={<SlabConditions />} />
           </Routes>
         </div>
 

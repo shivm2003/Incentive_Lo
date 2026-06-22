@@ -15,8 +15,10 @@ export const monthlyData = {
       active: 1, progress: 85,
       low: '₹20L', current: '₹42.5L', high: '₹50L',
       needed: '₹7.5L more needed',
-      tip: 'Disburse ₹7.5L more to unlock 0.75% slab'
+      tip: 'Disburse ₹7.5L more to unlock 0.75% slab',
+      hlLapRatio: 'HL 70% : LAP 30%'
     },
+    contest: { loginCount: 20, loginIncentive: '₹2,000' },
     chart: { earned: 21250, pending: 5950, potential: 10625 },
     summary: { earned: '₹21,250', pending: '₹5,950', total: '₹27,200', extra: '+₹10,625 extra' },
     cases: [
@@ -153,8 +155,10 @@ export const monthlyData = {
       active: 1, progress: 76,
       low: '₹20L', current: '₹38.2L', high: '₹50L',
       needed: '₹11.8L more needed',
-      tip: 'Disburse ₹11.8L more to unlock 0.75% slab'
+      tip: 'Disburse ₹11.8L more to unlock 0.75% slab',
+      hlLapRatio: 'HL 70% : LAP 30%'
     },
+    contest: { loginCount: 18, loginIncentive: '₹1,800' },
     chart: { earned: 19100, pending: 3200, potential: 9550 },
     summary: { earned: '₹19,100', pending: '₹3,200', total: '₹22,300', extra: '+₹9,550 extra' },
     cases: [
@@ -180,8 +184,10 @@ export const monthlyData = {
       active: 2, progress: 100,
       low: '₹50L', current: '₹55L', high: '₹1Cr',
       needed: 'Target achieved!',
-      tip: "You've unlocked Slab 3! Great performance."
+      tip: "You've unlocked Slab 3! Great performance.",
+      hlLapRatio: 'HL 70% : LAP 30%'
     },
+    contest: { loginCount: 25, loginIncentive: '₹2,500' },
     chart: { earned: 41250, pending: 0, potential: 13750 },
     summary: { earned: '₹41,250', pending: '₹0', total: '₹41,250', extra: '+₹13,750 extra' },
     cases: [
@@ -204,8 +210,10 @@ export const monthlyData = {
       active: 0, progress: 56,
       low: '₹0', current: '₹28L', high: '₹50L',
       needed: '₹22L more needed',
-      tip: 'Disburse ₹22L more to unlock 0.50% slab'
+      tip: 'Disburse ₹22L more to unlock 0.50% slab',
+      hlLapRatio: 'HL 70% : LAP 30%'
     },
+    contest: { loginCount: 12, loginIncentive: '₹1,200' },
     chart: { earned: 8400, pending: 1500, potential: 5600 },
     summary: { earned: '₹8,400', pending: '₹1,500', total: '₹9,900', extra: '+₹5,600 extra' },
     cases: [
@@ -228,8 +236,10 @@ export const monthlyData = {
       active: 1, progress: 63,
       low: '₹20L', current: '₹31.5L', high: '₹50L',
       needed: '₹18.5L more needed',
-      tip: 'Disburse ₹18.5L more to unlock 0.75% slab'
+      tip: 'Disburse ₹18.5L more to unlock 0.75% slab',
+      hlLapRatio: 'HL 70% : LAP 30%'
     },
+    contest: { loginCount: 15, loginIncentive: '₹1,500' },
     chart: { earned: 15750, pending: 0, potential: 7875 },
     summary: { earned: '₹15,750', pending: '₹0', total: '₹15,750', extra: '+₹7,875 extra' },
     cases: [
@@ -250,8 +260,10 @@ export const monthlyData = {
       active: 1, progress: 44,
       low: '₹20L', current: '₹22L', high: '₹50L',
       needed: '₹28L more needed',
-      tip: 'Disburse ₹28L more to unlock 0.75% slab'
+      tip: 'Disburse ₹28L more to unlock 0.75% slab',
+      hlLapRatio: 'HL 70% : LAP 30%'
     },
+    contest: { loginCount: 10, loginIncentive: '₹1,000' },
     chart: { earned: 11000, pending: 2100, potential: 5500 },
     summary: { earned: '₹11,000', pending: '₹2,100', total: '₹13,100', extra: '+₹5,500 extra' },
     cases: [

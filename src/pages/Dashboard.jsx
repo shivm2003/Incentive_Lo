@@ -1,4 +1,5 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { monthlyData, SLAB_CONFIG, MONTH_OPTIONS, fmt } from '../data/monthlyData';
 import MonthFilter from '../components/MonthFilter';
@@ -28,6 +29,7 @@ function getCumulativeData(monthCount) {
 }
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const { currentMonth } = useApp();
   const data = monthlyData[currentMonth];
   const { metrics, slab, chart, summary } = data;
@@ -36,6 +38,16 @@ export default function Dashboard() {
   // Cumulative slicer state
   const [cumSlice, setCumSlice] = useState(6);
   const cumData = useMemo(() => getCumulativeData(cumSlice), [cumSlice]);
+
+  // Sync / Last Updated logic
+  const [lastUpdated, setLastUpdated] = useState(() => new Date());
+  useEffect(() => {
+    // Simulate periodic sync every minute
+    const interval = setInterval(() => {
+      setLastUpdated(new Date());
+    }, 60000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="page page-fade-in">
@@ -46,6 +58,9 @@ export default function Dashboard() {
           <div>
             <div className="user-name">Rajesh Sharma</div>
             <div className="user-role">Loan Officer · Gurugram</div>
+            <div className="last-sync text-secondary" style={{ fontSize: '11px', marginTop: '2px' }}>
+              Last Updated on: {lastUpdated.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            </div>
           </div>
         </div>
         <MonthFilter />
@@ -53,7 +68,7 @@ export default function Dashboard() {
 
       {/* Metrics Grid */}
       <div className="metrics-grid">
-        <div className="metric">
+        <div className="metric" onClick={() => navigate('/cases')} style={{ cursor: 'pointer' }}>
           <div className="mlabel">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3" /></svg>
             Net disbursed
@@ -61,7 +76,7 @@ export default function Dashboard() {
           <div className="mval">{metrics.disbursed}</div>
           <div className="msub">{metrics.disbursedSub}</div>
         </div>
-        <div className="metric">
+        <div className="metric" onClick={() => navigate('/cases', { state: { filter: 'Earned' } })} style={{ cursor: 'pointer' }}>
           <div className="mlabel">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="8" /><path d="M12 8v4M9.5 14h5" /></svg>
             Current incentive
@@ -69,7 +84,7 @@ export default function Dashboard() {
           <div className="mval text-success">{metrics.incentive}</div>
           <div className="msub">{metrics.incentiveSub}</div>
         </div>
-        <div className="metric">
+        <div className="metric" onClick={() => navigate('/pending')} style={{ cursor: 'pointer' }}>
           <div className="mlabel">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
             Pending
@@ -77,7 +92,7 @@ export default function Dashboard() {
           <div className="mval text-warning">{metrics.pending}</div>
           <div className="msub">{metrics.pendingSub}</div>
         </div>
-        <div className="metric">
+        <div className="metric" onClick={() => navigate('/cases')} style={{ cursor: 'pointer' }}>
           <div className="mlabel">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="9" y1="15" x2="15" y2="15" /></svg>
             Cases done
@@ -111,21 +126,56 @@ export default function Dashboard() {
             </div>
           ))}
         </div>
-        <div className="slab-meta">
-          <span>Progress to next slab</span>
-          <span className="text-accent font-medium">{slab.needed}</span>
-        </div>
-        <div className="pb-bg">
-          <div className="pb-fill" style={{ width: `${slab.progress}%` }}></div>
-        </div>
-        <div className="pb-labels">
-          <span>{slab.low}</span>
-          <span className="text-accent font-medium">{slab.current}</span>
-          <span>{slab.high}</span>
+        <div className="slab-goto" style={{ marginTop: '16px', padding: '12px', background: '#f8f9fa', borderRadius: '8px' }}>
+          <div style={{ marginBottom: '8px' }}>
+            <span className="text-secondary" style={{ fontSize: '13px' }}>To do this </span>
+            <span className="text-accent font-medium">{slab.needed}</span>
+          </div>
+          {slab.hlLapRatio && (
+            <div style={{ marginBottom: '12px', fontSize: '12px', color: '#666' }}>
+              Condition: {slab.hlLapRatio}
+            </div>
+          )}
+          {slab.needed !== 'Target achieved!' && (
+            <Link to="/slab-conditions" className="btn-primary" style={{ display: 'inline-block', padding: '8px 16px', borderRadius: '6px', textDecoration: 'none', background: '#185FA5', color: '#fff', fontSize: '13px', fontWeight: '500' }}>
+              Goto next slab
+            </Link>
+          )}
         </div>
         <div className="tip">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><line x1="12" y1="16" x2="12" y2="12" /><line x1="12" y1="8" x2="12.01" y2="8" /></svg>
           {slab.tip}
+        </div>
+      </div>
+
+      {/* Contest Incentive */}
+      <div className="card">
+        <div className="sec-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+          Contest incentive
+        </div>
+        <div className="sum-row">
+          <span className="text-secondary">Login Count</span>
+          <span className="font-medium">{data.contest?.loginCount || 0}</span>
+        </div>
+        <div className="sum-row no-border">
+          <span className="text-secondary">Login Incentive</span>
+          <span className="font-medium text-success">{data.contest?.loginIncentive || '₹0'}</span>
+        </div>
+      </div>
+
+      {/* Collapse Incentive */}
+      <div className="card">
+        <div className="sec-label">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          Collapse incentive
+        </div>
+        <div className="sum-row no-border" style={{ paddingBottom: '4px' }}>
+          <span className="text-secondary">On hold (PDD not cleared)</span>
+          <span className="font-medium text-warning">{summary.pending}</span>
+        </div>
+        <div style={{ fontSize: '11px', color: '#E24B4A', marginTop: '4px' }}>
+          It will be collapse, If PDD not cleared before 5 days left
         </div>
       </div>
 
