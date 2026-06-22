@@ -58,12 +58,14 @@ export default function Dashboard() {
           <div>
             <div className="user-name">Rajesh Sharma</div>
             <div className="user-role">Loan Officer · Gurugram</div>
-            <div className="last-sync text-secondary" style={{ fontSize: '11px', marginTop: '2px' }}>
-              Last Updated on: {lastUpdated.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-            </div>
           </div>
         </div>
-        <MonthFilter />
+        <div className="topbar-right" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '4px' }}>
+          <div className="last-sync text-secondary" style={{ fontSize: '11px', fontWeight: 'bold' }}>
+            Last Updated on: {lastUpdated.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+          </div>
+          <MonthFilter />
+        </div>
       </div>
 
       {/* Metrics Grid */}
