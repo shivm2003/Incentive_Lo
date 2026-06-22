@@ -67,6 +67,7 @@ export default function Cases() {
               </svg>
             </div>
           </div>
+          );
         })}
       </div>
     </div>
